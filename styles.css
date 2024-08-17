@@ -1,0 +1,162 @@
+/*// General Styles //*/
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/*// Content Section //*/
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 10px;
+}
+
+.content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.content ul,
+.content ol {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.content ul li,
+.content ol li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.steps h3 {
+  font-size: 1.4rem;
+  color: #4caf50;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-left: 3px solid #4caf50;
+  overflow-x: auto;
+}
+
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+}
+
+/*// Footer Styles //*/
+
+footer {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a.footer-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a.footer-link:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/*// News Container //*/
+#news-container {
+  margin-top: 20px;
+}
+
+.news-article {
+  background-color: #f9f9f9;
+  border-left: 5px solid #4caf50;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.news-article h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.news-article p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  color: #4caf50;
+  background-color: #f4f4f4;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.read-more:hover {
+  background-color: #4caf50;
+  color: white;
+}

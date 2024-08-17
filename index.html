@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NewsAPI Integration & Documentation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>NewsAPI Integration Demonstration</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="https://newsapi.org" target="_blank">NewsAPI Website</a>
+      </nav>
+    </header>
+
+    <!-- Provide general information about newsAPI-->
+    <section class="content">
+      <h2>Overview of NewsAPI</h2>
+      <p>
+        With NewsAPI, you can search and retrieve real-time items from more than 150,000 online
+        sources using a straightforward HTTP REST API. It can assist you in responding to queries
+        such as:
+      </p>
+      <ul>
+        <li>Which top stories are currently featured on TechCrunch?</li>
+        <li>Which fresh reports on the upcoming iPhone surfaced today?</li>
+        <li>Have any bloggers recently reviewed or highlighted my business or product?</li>
+      </ul>
+      <p>
+        A variety of parameters, including keywords, the date of publication, the source domain
+        name, and language, can be used to search for articles. The popularity of the source,
+        relevance to the search terms, and publication date can all be used to sort the results.
+      </p>
+
+      <h3>Features of NewsAPI</h3>
+      <ul>
+        <li>
+          <strong>Top Headlines:</strong> Get the latest breaking news headlines for countries,
+          categories, and specific publishers.
+        </li>
+        <li>
+          <strong>Everything:</strong> Search every article published by over 150,000 sources in the
+          last five years. This is ideal for news analysis and article discovery.
+        </li>
+        <li>
+          <strong>Sources:</strong> Retrieve information about the most notable sources available
+          for obtaining top headlines, including their name, description, and category.
+        </li>
+      </ul>
+
+      <h2>How to Get Started with NewsAPI</h2>
+
+      <ol class="steps">
+        <li>
+          <h3>Step 1: Register for an API Key</h3>
+          <p>To start using NewsAPI, you need to register for an API key. Follow these steps:</p>
+          <ul>
+            <li>
+              <a href="https://newsapi.org/register" target="_blank">
+                Visit the NewsAPI registration page.
+              </a>
+            </li>
+            <li>Fill in your <strong>First Name</strong> and <strong>Last Name</strong>.</li>
+            <li>
+              Enter a valid <strong>Email Address</strong>. Note: Disposable email addresses are
+              blocked.
+            </li>
+            <li>Create a <strong>Password</strong>.</li>
+            <li>Select whether you are an individual or working on behalf of a business.</li>
+            <li>Agree to the terms and conditions, then submit the form.</li>
+            <li>
+              Check your email for a verification message, and click the link to verify your
+              account.
+            </li>
+            <li>
+              Once verified, you will receive your unique API key. Keep this key secure, as it
+              identifies your requests.
+            </li>
+          </ul>
+          <pre><code>const apiKey = 'YOUR_API_KEY';  // Replace with your actual API key.</code></pre>
+        </li>
+
+        <li>
+          <h3>Step 2: Connect to the API</h3>
+          <p>
+            Use the Fetch API in JavaScript to connect to NewsAPI. Below is an example that fetches
+            the top headlines:
+          </p>
+          <pre><code>
+const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+          </code></pre>
+        </li>
+
+        <li>
+          <h3>Step 3: Output Data on the Web Page</h3>
+          <p>
+            Once you receive the data, you can display it on your webpage. Here’s how to loop
+            through the articles and display them with links:
+          </p>
+          <pre><code>
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const articles = data.articles;
+    articles.forEach(article => {
+      const articleElement = document.createElement('div');
+      articleElement.classList.add('news-article');
+
+      const titleElement = document.createElement('h4');
+      const linkElement = document.createElement('a');
+      linkElement.href = article.url;
+      linkElement.target = '_blank';  // Open link in a new tab
+      linkElement.textContent = article.title;
+      titleElement.appendChild(linkElement);
+      articleElement.appendChild(titleElement);
+
+      const descriptionElement = document.createElement('p');
+      descriptionElement.textContent = article.description;
+      articleElement.appendChild(descriptionElement);
+
+      document.getElementById('news-container').appendChild(articleElement);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+          </code></pre>
+        </li>
+
+        <li>
+          <h3>Step 4: Customize the API Call</h3>
+          <p>
+            NewsAPI provides different endpoints for various use cases. Here’s how you can use them:
+          </p>
+          <ul>
+            <li>
+              <strong>Everything Endpoint:</strong> Search articles from over 150,000 sources in the
+              last 5 years. Use it for news analysis and discovery.
+            </li>
+            <pre><code>
+GET https://newsapi.org/v2/everything?q=Apple&from=2024-08-10&sortBy=popularity&apiKey=YOUR_API_KEY
+
+// Example using curl
+curl https://newsapi.org/v2/everything -G \
+  -d q=Apple \
+  -d from=2024-08-10 \
+  -d sortBy=popularity \
+  -d apiKey=YOUR_API_KEY
+            </code></pre>
+            <li>
+              <strong>Top Headlines Endpoint:</strong> Get breaking news headlines for countries,
+              categories, and publishers. Ideal for live news tickers.
+            </li>
+            <pre><code>
+GET https://newsapi.org/v2/top-headlines?country=us&apiKey=YOUR_API_KEY
+
+// Example using curl
+curl https://newsapi.org/v2/top-headlines -G \
+  -d country=us \
+  -d apiKey=YOUR_API_KEY
+            </code></pre>
+            <li>
+              <strong>Sources Endpoint:</strong> Retrieve information about notable sources for
+              headlines, including name, description, and category.
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      <h2>Live Demonstration</h2>
+      <div id="news-container">
+        <!-- JavaScript will insert the news articles here -->
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 NewsAPI Demo. All rights reserved.</p>
+        <p>Name: Ajaypartap Singh Maan</p>
+        <p>Class: WEB222ZEE</p>
+        <p>Student ID: 144040235</p>
+        <p>Date: August 10, 2024</p>
+        <p>
+          Reference: Content adapted from
+          <a href="https://newsapi.org" target="_blank" class="footer-link">NewsAPI</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
